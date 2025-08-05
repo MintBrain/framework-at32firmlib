@@ -3,13 +3,13 @@
  * Title:        arm_common_tables.c
  * Description:  common tables like fft twiddle factors, Bitreverse, reciprocal etc
  *
- * $Date:        18. March 2019
- * $Revision:    V1.6.0
+ * $Date:        23 April 2021
+ * $Revision:    V1.9.0
  *
- * Target Processor: Cortex-M cores
+ * Target Processor: Cortex-M and Cortex-A cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2019 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,7 +26,7 @@
  * limitations under the License.
  */
 
-#include "arm_math.h"
+#include "arm_math_types.h"
 #include "arm_common_tables.h"
 
 /**
@@ -8537,10 +8537,6 @@ const uint64_t twiddleCoefF64_4096[8192] = {
 };
 
 #endif /* !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) */
-
-/**
-  @brief  Floating-point Twiddle factors Table Generation
-*/
 
 #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_TWIDDLECOEF_F32_16)
 /**
@@ -17146,7 +17142,7 @@ const q31_t twiddleCoef_128_q31[192] = {
   @par
   Convert Floating point to Q31(Fixed point 1.31):
  	round(twiddleCoefQ31(i) * pow(2, 31))
-
+ 
  */
 const q31_t twiddleCoef_256_q31[384] = {
 	(q31_t)0x7FFFFFFF, (q31_t)0x00000000, (q31_t)0x7FF62182,
@@ -17298,7 +17294,7 @@ const q31_t twiddleCoef_256_q31[384] = {
   @par
   Convert Floating point to Q31(Fixed point 1.31):
  	round(twiddleCoefQ31(i) * pow(2, 31))
-
+ 
  */
 const q31_t twiddleCoef_512_q31[768] = {
     (q31_t)0x7FFFFFFF, (q31_t)0x00000000, (q31_t)0x7FFD885A,
@@ -17578,7 +17574,7 @@ const q31_t twiddleCoef_512_q31[768] = {
   @par
   Convert Floating point to Q31(Fixed point 1.31):
  	round(twiddleCoefQ31(i) * pow(2, 31))
-
+ 
  */
 const q31_t twiddleCoef_1024_q31[1536] = {
 	(q31_t)0x7FFFFFFF, (q31_t)0x00000000, (q31_t)0x7FFF6216,
@@ -21765,7 +21761,7 @@ const q15_t twiddleCoef_512_q15[768] = {
   @par
   Convert Floating point to q15(Fixed point 1.15):
  	round(twiddleCoefq15(i) * pow(2, 15))
-
+ 
  */
 const q15_t twiddleCoef_1024_q15[1536] = {
 	(q15_t)0x7FFF, (q15_t)0x0000, (q15_t)0x7FFF, (q15_t)0x00C9,
@@ -27137,8 +27133,8 @@ const uint64_t twiddleCoefF64_rfft_256[256] = {
     0x3fb2d52092ce19f6,     0xbfefe9cdad01883a,     //0.073565, -0.99729
     0x3fa91f65f10dd814,     0xbfeff621e3796d7e,     //0.049068,  -0.9988'
     0x3f992155f7a3667e,     0xbfeffd886084cd0d,     //0.024541,  -0.9997
-
-
+        
+            
 };
 #endif /* !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) */
 
@@ -27920,7 +27916,7 @@ const uint64_t twiddleCoefF64_rfft_1024[1024] = {
     0x3f8921d1fcdec784,     0xbfefff62169b92db,     // 0.012272,  -0.99992'
     0x3f7921f0fe670071,     0xbfefffd8858e8a92,     //0.0061359,  -0.99998'
 };
-
+    
 #endif /* !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) */
 
 #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_TWIDDLECOEF_RFFT_F64_2048)
@@ -61414,7 +61410,7 @@ const q15_t __ALIGNED(4) realCoefBQ15[8192] = {
   C command to generate the table
   <pre>
   for(i = 0; i< N; i++)
-  {
+  { 
     weights[(2*i)]   =  cos(i*c);
     weights[(2*i)+1] = -sin(i*c);
   } </pre>
@@ -65592,7 +65588,7 @@ const q15_t __ALIGNED(4) realCoefBQ15[8192] = {
   Then converted to q31 format by multiplying with 2^31 and saturated if required.
 */
 
-  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_Q31_128)
+  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_Q31_128)  
     const q31_t WeightsQ31_128[256] = {
   (q31_t)0x7fffffff, (q31_t)0x00000000, (q31_t)0x7ffd885a, (q31_t)0xfe6de2e0, (q31_t)0x7ff62182, (q31_t)0xfcdbd541, (q31_t)0x7fe9cbc0, (q31_t)0xfb49e6a3,
   (q31_t)0x7fd8878e, (q31_t)0xf9b82684, (q31_t)0x7fc25596, (q31_t)0xf826a462, (q31_t)0x7fa736b4, (q31_t)0xf6956fb7, (q31_t)0x7f872bf3, (q31_t)0xf50497fb,
@@ -65663,7 +65659,7 @@ const q15_t __ALIGNED(4) realCoefBQ15[8192] = {
 };
   #endif
 
-  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_Q31_512)
+  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_Q31_512) 
     const q31_t WeightsQ31_512[1024] = {
   (q31_t)0x7fffffff, (q31_t)0x00000000, (q31_t)0x7fffd886, (q31_t)0xff9b781d, (q31_t)0x7fff6216, (q31_t)0xff36f078, (q31_t)0x7ffe9cb2, (q31_t)0xfed2694f,
   (q31_t)0x7ffd885a, (q31_t)0xfe6de2e0, (q31_t)0x7ffc250f, (q31_t)0xfe095d69, (q31_t)0x7ffa72d1, (q31_t)0xfda4d929, (q31_t)0x7ff871a2, (q31_t)0xfd40565c,
@@ -65926,7 +65922,7 @@ const q15_t __ALIGNED(4) realCoefBQ15[8192] = {
 };
   #endif
 
-  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_Q31_2048)
+  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_Q31_2048) 
     const q31_t WeightsQ31_2048[4096] = {
   (q31_t)0x7fffffff, (q31_t)0x00000000, (q31_t)0x7ffffd88, (q31_t)0xffe6de05, (q31_t)0x7ffff621, (q31_t)0xffcdbc0b, (q31_t)0x7fffe9cb, (q31_t)0xffb49a12,
   (q31_t)0x7fffd886, (q31_t)0xff9b781d, (q31_t)0x7fffc251, (q31_t)0xff82562c, (q31_t)0x7fffa72c, (q31_t)0xff69343f, (q31_t)0x7fff8719, (q31_t)0xff501258,
@@ -66957,7 +66953,7 @@ const q15_t __ALIGNED(4) realCoefBQ15[8192] = {
 };
   #endif
 
-  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_Q31_8192)
+  #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FFT_TABLES) || defined(ARM_TABLE_DCT4_Q31_8192) 
     const q31_t WeightsQ31_8192[16384] = {
   (q31_t)0x7fffffff, (q31_t)0x00000000, (q31_t)0x7fffffd9, (q31_t)0xfff9b781, (q31_t)0x7fffff62, (q31_t)0xfff36f02, (q31_t)0x7ffffe9d, (q31_t)0xffed2684,
   (q31_t)0x7ffffd88, (q31_t)0xffe6de05, (q31_t)0x7ffffc25, (q31_t)0xffe09586, (q31_t)0x7ffffa73, (q31_t)0xffda4d08, (q31_t)0x7ffff872, (q31_t)0xffd40489,
@@ -70387,7 +70383,7 @@ const q15_t sinTable_q15[FAST_MATH_TABLE_SIZE + 1] = {
 };
 #endif /* defined(ARM_ALL_FAST_TABLES) */
 
-#if defined(ARM_MATH_MVEI)
+#if defined(ARM_MATH_MVEI) && !defined(ARM_MATH_AUTOVECTORIZE)
      #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FAST_TABLES) || defined(ARM_TABLE_FAST_SQRT_Q31_MVE)
 const q31_t sqrtTable_Q31[256] = {
     0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
@@ -70511,8 +70507,36 @@ const q15_t sqrtTable_Q15[256] = {
      #endif
 #endif /* defined(ARM_MATH_MVEI) */
 
+#if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FAST_TABLES) || defined(ARM_TABLE_SQRT_Q31)
+/*
+ClearAll[tofix];
+tofix[q_][a_] := With[{r = Round[a*2^q]},
+   If[r > (2^q - 1), 2^q - 1, r]
+   ];
 
-#endif /* if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_FAST_TABLES) */
+(* For q = format, 2^nb is length of the table *)
+With[{q = 15, nb = 4, q12quarter = 16^^2000},
+  With[{shift = Echo[q - nb]},
+   Table[tofix[q][1.0/Sqrt[1.0*i/2^q]/8.0], {i, 2^(q - 2), 
+     2^q + q12quarter - 1, 2^shift}]]
+  ] // CopyToClipboard
+
+*/
+const q31_t sqrt_initial_lut_q31[32]={536870912, 506166750, 480191942, 457845052, 438353264, 421156193, \
+405836263, 392075079, 379625062, 368290407, 357913941, 348367849, \
+339546978, 331363921, 323745341, 316629190, 309962566, 303700050, \
+297802400, 292235509, 286969573, 281978417, 277238947, 272730696, \
+268435456, 264336964, 260420644, 256673389, 253083375, 249639903, \
+246333269, 243154642};
+#endif /* !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FAST_TABLES) || defined(ARM_TABLE_SQRT_Q31) */
+
+#if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FAST_TABLES) || defined(ARM_TABLE_SQRT_Q15)
+const q15_t sqrt_initial_lut_q15[16]={8192, 7327, 6689, 6193, 5793, 5461, 5181, 4940, 4730, 4544, 4379, \
+4230, 4096, 3974, 3862, 3759};
+#endif /* !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_ALL_FAST_TABLES) || defined(ARM_TABLE_SQRT_Q15) */
+
+
+#endif /* #if !defined(ARM_DSP_CONFIG_TABLES) || defined(ARM_FAST_ALLOW_TABLES) */
 
 #if (defined(ARM_MATH_MVEF) || defined(ARM_MATH_HELIUM)) && !defined(ARM_MATH_AUTOVECTORIZE)
 const float32_t exp_tab[8] = {
@@ -70539,14 +70563,14 @@ const float32_t __logf_lut_f32[8] = {
 
 #endif /* (defined(ARM_MATH_MVEF) || defined(ARM_MATH_HELIUM)) && !defined(ARM_MATH_AUTOVECTORIZE) */
 
-#if (defined(ARM_MATH_MVEI) || defined(ARM_MATH_HELIUM))
+#if (defined(ARM_MATH_MVEI) || defined(ARM_MATH_HELIUM))  && !defined(ARM_MATH_AUTOVECTORIZE)
 
 /* haming weight LUT for bytes */
 #define B2(n) n, n + 1, n + 1, n + 2
 #define B4(n) B2(n) , B2(n + 1), B2(n + 1), B2(n + 2)
 #define B6(n) B4(n) , B4(n + 1), B4(n + 1), B4(n + 2)
 
-// Lookup table that store the reverse of each table
+// Lookup table that store the reverse of each table 
 const unsigned char hwLUT[256] = { B6(0), B6(1), B6(1), B6(2) };
 
 #endif /* (defined(ARM_MATH_MVEI) || defined(ARM_MATH_HELIUM)) */
